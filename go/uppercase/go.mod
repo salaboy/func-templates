@@ -1,4 +1,4 @@
-module uppercase
+module function
 
 go 1.14
 

@@ -1,4 +1,4 @@
-module improve
+module function
 
 go 1.14
 
