@@ -1,4 +1,4 @@
-module uppercase
+module improve
 
 go 1.14
 
