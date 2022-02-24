@@ -11,7 +11,7 @@ Update the running analog of the function using the `func` CLI or client library
 Using `curl`: 
 
 ```console
-curl -v -X POST -d '{"input": "salaboy"}' \
+curl -v -X POST -d '{"input": "SALABOY"}' \
   -H'Content-type: application/json' \
   -H'Ce-id: 1' \
   -H'Ce-source: cloud-event-example' \
@@ -27,11 +27,11 @@ Or using `httpie`:
 http -v "http://localhost:8080/" \
 Content-Type:application/json \
 Ce-Id:1 \
-Ce-Subject:Improve Content \
+Ce-Subject:Improve \
 Ce-Source:cloud-event-example \
 Ce-Type:UpperCasedEvent \
 Ce-Specversion:1.0 \
-input="salaboy"
+input="SALABOY"
 ```
 
 For more, see [the complete documentation]('https://github.com/knative-sandbox/kn-plugin-func/tree/main/docs')
