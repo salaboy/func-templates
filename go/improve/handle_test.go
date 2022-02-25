@@ -17,10 +17,12 @@ func TestHandle(t *testing.T) {
 	event.SetID("TEST-EVENT-01")
 	event.SetType("UpperCasedEvent")
 	event.SetSource("http://localhost:8080/")
-	event.SetSubject("Improve content")
-	input := Input{}
-	input.Input = "hello"
-	event.SetData(cloudevents.ApplicationJSON, &input)
+	event.SetSubject("Content Uppercased")
+	inputOutput := Output{}
+	inputOutput.Input = "hello"
+	inputOutput.Output = "Hello"
+	inputOutput.Operation = "Content Uppercased"
+	event.SetData(cloudevents.ApplicationJSON, &inputOutput)
 	// Invoke the defined handler.
 	ce, err := Handle(context.Background(), event)
 	if err != nil {
@@ -41,11 +43,11 @@ func TestHandle(t *testing.T) {
 	if output.Operation != event.Subject() {
 		t.Errorf("The output.Operation: %v should be the same as the input event Subject: %v", output.Operation, event.Subject())
 	}
-	if output.Input != input.Input {
-		t.Errorf("The output.Input: %v should be the same as the input.Input: %v", output.Input, input.Input)
+	if output.Input != inputOutput.Output {
+		t.Errorf("The output.Input: %v should be the same as the input.Input: %v", output.Input, inputOutput.Output)
 	}
 
-	if output.Output != input.Input + " improved!" {
-		t.Errorf("The output.Output: %v should be the same as the input.Input plus ' improved!': %v", output.Output, input.Input + " improved!")
+	if output.Output != inputOutput.Output + " improved!" {
+		t.Errorf("The output.Output: %v should be the same as the input.Input plus ' improved!': %v", output.Output, inputOutput.Output + " improved!")
 	}
 }

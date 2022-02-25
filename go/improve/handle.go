@@ -22,21 +22,21 @@ type Input struct {
 }
 
 func improve(event cloudevents.Event) (*event.Event, error) {
-	input := Input{}
-	err := json.Unmarshal(event.Data(), &input)
+	inputOutput := Output{}
+	err := json.Unmarshal(event.Data(), &inputOutput)
 	if err != nil {
 		fmt.Printf("%v\n", err)
 		return nil, err
 	}
-	fmt.Printf("%v\n", input)
 	outputEvent := cloudevents.NewEvent()
 	id, _ := uuid.NewUUID()
 	outputEvent.SetID(id.String())
 	outputEvent.SetSource("http://example.com/improved")
 	outputEvent.SetType("ImprovedEvent")
+	outputEvent.SetSubject("Content Improved!")
 	output := Output{}
-	output.Input = input.Input
-	output.Output = input.Input + " improved!"
+	output.Input = inputOutput.Output
+	output.Output = inputOutput.Output + " improved!"
 	output.Operation = event.Subject()
 	outputEvent.SetData(cloudevents.ApplicationJSON, &output)
 
