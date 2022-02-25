@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/google/uuid"
 	"strings"
 
 	"github.com/cloudevents/sdk-go/v2/event"
@@ -31,6 +32,8 @@ func uppercase(event cloudevents.Event) (*event.Event, error) {
 	}
 	fmt.Printf("%v\n", input)
 	outputEvent := cloudevents.NewEvent()
+	id, _ := uuid.NewUUID()
+	outputEvent.SetID(id.String())
 	outputEvent.SetSource("http://example.com/uppercase")
 	outputEvent.SetType("UpperCasedEvent")
 	output := Output{}

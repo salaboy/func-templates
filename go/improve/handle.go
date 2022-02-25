@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/cloudevents/sdk-go/v2/event"
+	"github.com/google/uuid"
 
 	cloudevents "github.com/cloudevents/sdk-go/v2"
 )
@@ -29,6 +30,8 @@ func improve(event cloudevents.Event) (*event.Event, error) {
 	}
 	fmt.Printf("%v\n", input)
 	outputEvent := cloudevents.NewEvent()
+	id, _ := uuid.NewUUID()
+	outputEvent.SetID(id.String())
 	outputEvent.SetSource("http://example.com/improved")
 	outputEvent.SetType("ImprovedEvent")
 	output := Output{}
