@@ -37,7 +37,7 @@ func improve(event cloudevents.Event) (*event.Event, error) {
 	output := Output{}
 	output.Input = inputOutput.Output
 	output.Output = inputOutput.Output + " improved!"
-	output.Operation = event.Subject()
+	output.Operation = "improve"
 	outputEvent.SetData(cloudevents.ApplicationJSON, &output)
 
 	fmt.Printf("Outgoing Event: %v\n", outputEvent)
